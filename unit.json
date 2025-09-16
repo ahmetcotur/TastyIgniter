@@ -1,0 +1,26 @@
+{
+    "listeners": {
+      "*:8000": { "pass": "routes" }
+    },
+    "routes": [
+      {
+        "match": { "uri": "!/storage/*" },
+        "action": { "pass": "applications/laravel" }
+      }
+    ],
+    "applications": {
+      "laravel": {
+        "type": "php",
+        "working_directory": "/var/www/html/public",
+        "user": "www-data",
+        "targets": {
+          "app": {
+            "root": "/var/www/html/public",
+            "script": "index.php",
+            "index": "index.php",
+            "options": { "admin": { "memory_limit": "512M" } }
+          }
+        }
+      }
+    }
+  }
