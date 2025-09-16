@@ -1,6 +1,6 @@
 {
   "listeners": {
-    "*:8000": { "pass": "routes/laravel" }
+    "*:8000": { "pass": "routes" }
   },
   "routes": [
     {

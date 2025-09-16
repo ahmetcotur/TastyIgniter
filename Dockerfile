@@ -31,4 +31,4 @@ COPY unit.json /etc/unit/config.d/20-laravel.json
 RUN php artisan config:clear || true
 
 EXPOSE 8000
-CMD ["unitd", "--no-daemon"]
+ENV PHP_OPCACHE_ENABLE=1 
