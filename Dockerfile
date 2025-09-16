@@ -14,7 +14,6 @@ WORKDIR /var/www/html
 
 # --- ÖNCE composer manifest & LOCK'u kopyala (lock dosyasını ZORUNLU kopyala) ---
 COPY composer.json ./
-COPY composer.lock ./
 RUN composer install --no-dev --prefer-dist --no-interaction --no-ansi --no-progress
 
 # Uygulama dosyaları
