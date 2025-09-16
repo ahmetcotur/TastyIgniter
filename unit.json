@@ -1,26 +1,28 @@
 {
-    "listeners": {
-      "*:8000": { "pass": "routes" }
+  "listeners": {
+    "*:8000": { "pass": "routes/laravel" }
+  },
+  "routes": [
+    {
+      "match": { "uri": [ "/index.php*", "~\\.(php)$" ] },
+      "action": { "pass": "applications/php" }
     },
-    "routes": [
-      {
-        "match": { "uri": "!/storage/*" },
-        "action": { "pass": "applications/laravel" }
-      }
-    ],
-    "applications": {
-      "laravel": {
-        "type": "php",
-        "working_directory": "/var/www/html/public",
-        "user": "www-data",
-        "targets": {
-          "app": {
-            "root": "/var/www/html/public",
-            "script": "index.php",
-            "index": "index.php",
-            "options": { "admin": { "memory_limit": "512M" } }
-          }
-        }
+    {
+      "action": {
+        "share": "/var/www/html/public",
+        "fallback": { "pass": "applications/php" }
       }
     }
+  ],
+  "applications": {
+    "php": {
+      "type": "php",
+      "user": "www-data",
+      "group": "www-data",
+      "root": "/var/www/html",
+      "script": "public/index.php",
+      "working_directory": "/var/www/html",
+      "processes": { "max": 8, "spare": 2 }
+    }
   }
+}

@@ -27,8 +27,7 @@ RUN chown -R www-data:www-data storage bootstrap/cache \
 RUN cp -n .env.example .env || true
 
 # Nginx Unit config
-COPY unit.json /docker-entrypoint.d/unit.json
-
+COPY unit.json /etc/unit/config.d/20-laravel.json
 RUN php artisan config:clear || true
 
 EXPOSE 8000
